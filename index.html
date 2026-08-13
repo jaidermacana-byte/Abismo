@@ -12,18 +12,22 @@
 <body>
 
 <svg id="svg-defs" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="bioGlow" x="-60%" y="-60%" width="220%" height="220%">
-      <feGaussianBlur stdDeviation="2.2" result="blur"/>
+ <defs>
+    <filter id="bioGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feDropShadow dx="0" dy="0" stdDeviation="1.2" flood-color="#52e8cf" flood-opacity="0.9" result="glowNear"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#52e8cf" flood-opacity="0.45" result="glowFar"/>
       <feMerge>
-        <feMergeNode in="blur"/>
+        <feMergeNode in="glowFar"/>
+        <feMergeNode in="glowNear"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    <filter id="lureGlow" x="-200%" y="-200%" width="500%" height="500%">
-      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+    <filter id="lureGlow" x="-250%" y="-250%" width="600%" height="600%">
+      <feDropShadow dx="0" dy="0" stdDeviation="1.5" flood-color="#ffb340" flood-opacity="1" result="glowCore"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#ffb340" flood-opacity="0.55" result="glowHalo"/>
       <feMerge>
-        <feMergeNode in="blur"/>
+        <feMergeNode in="glowHalo"/>
+        <feMergeNode in="glowCore"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>

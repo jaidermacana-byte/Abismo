@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Abismo — Un descenso al océano profundo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<svg id="svg-defs" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="bioGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="2.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="lureGlow" x="-200%" y="-200%" width="500%" height="500%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+</svg>
+
+<div id="particles" aria-hidden="true"></div>
+
+<div id="gauge" aria-hidden="true">
+  <div id="gauge-readout"><span id="zone-name">SUPERFICIE</span> · <span class="val" id="depth-val">0 m</span></div>
+  <div id="gauge-track"><div id="gauge-marker"></div></div>
+</div>
+
+<button id="notes-toggle" type="button" aria-pressed="false">
+  <span class="dot"></span> Añadir nota
+</button>
+<div id="notes-hint">Haz clic en cualquier parte de la página para dejar una nota ahí.</div>
+
+<main>
+
+  <section id="hero" class="zone" data-zone="Superficie" data-depth="0">
+    <svg id="light-rays" viewBox="0 0 1000 800" preserveAspectRatio="xMidYMin slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="rayGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#eaf9f5" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="#eaf9f5" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <polygon points="120,0 260,0 60,760 -80,760" fill="url(#rayGrad)"/>
+      <polygon points="420,0 520,0 380,760 260,760" fill="url(#rayGrad)" opacity="0.6"/>
+      <polygon points="700,0 830,0 680,760 520,760" fill="url(#rayGrad)" opacity="0.8"/>
+      <polygon points="950,0 1060,0 980,760 840,760" fill="url(#rayGrad)" opacity="0.5"/>
+    </svg>
+    <div class="hero-content">
+      <p class="eyebrow">Un descenso guiado</p>
+      <h1>El Abismo</h1>
+      <p class="lede">Debajo de cada ola hay una columna de agua de once mil metros. La luz desaparece antes del primer kilómetro. Lo que vive después no necesita el sol: fabrica su propia luz. Desliza hacia abajo y baja con ella.</p>
+      <p class="scroll-hint">DESCIENDE</p>
+    </div>
+  </section>
+
+  <section id="zona-eufotica" class="zone" data-zone="Zona eufótica" data-depth="150">
+    <div class="zone-inner">
+      <p class="eyebrow">Zona 1 · Eufótica</p>
+      <h2>Donde llega el sol</h2>
+      <p class="zone-depth">0 – 200 m · luz suficiente para la fotosíntesis</p>
+      <p>Aquí vive casi todo lo que reconoces: bancos de atún, delfines, el plancton que sostiene la cadena alimentaria entera. La luz solar todavía pinta el agua de azul. <strong>Es apenas el 2% del volumen del océano.</strong></p>
+      <p>A partir de los 200 metros la luz cae por debajo del umbral que una planta necesita para vivir. El verde del fitoplancton desaparece. Empieza el descenso real.</p>
+    </div>
+  </section>
+
+  <section id="zona-crepuscular" class="zone" data-zone="Zona crepuscular" data-depth="600">
+    <div class="zone-inner">
+      <p class="eyebrow">Zona 2 · Crepuscular (mesopelágica)</p>
+      <h2>El primer brillo propio</h2>
+      <p class="zone-depth">200 – 1.000 m · la presión ya cuadruplica la de la superficie</p>
+      <p>La luz que queda es un azul casi negro; no basta para ver colores, solo siluetas. Es aquí donde la mayoría de las especies marinas empieza a producir su propia luz: la bioluminiscencia deja de ser rareza y se vuelve lenguaje.</p>
+      <div class="creature-list">
+        <div class="creature">
+          <div class="creature-icon">
+            <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18,80 C30,45 70,32 105,34 C145,36 175,52 188,72 L170,78 L188,88 C172,108 140,120 100,120 C62,120 30,108 18,80 Z"
+                fill="rgba(82,232,207,0.08)" stroke="var(--bio)" stroke-width="1.6" filter="url(#bioGlow)"/>
+              <circle cx="66" cy="70" r="4.5" fill="var(--ink)"/>
+              <g fill="var(--lure)" filter="url(#lureGlow)">
+                <circle cx="55" cy="98" r="2"/><circle cx="72" cy="102" r="2"/>
+                <circle cx="90" cy="104" r="2"/><circle cx="108" cy="102" r="2"/>
+                <circle cx="125" cy="98" r="2"/>
+              </g>
+            </svg>
+          </div>
+          <div class="creature-body">
+            <h3>Pez hacha plateado</h3>
+            <p>Su cuerpo, delgado como una moneda, refleja la escasa luz para desaparecer de perfil. Por debajo lleva hileras de órganos luminosos que imitan el brillo del cielo, borrando su propia sombra ante los depredadores de abajo.</p>
+          </div>
+        </div>
+        <div class="creature">
+          <div class="creature-icon">
+            <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="70" cy="55" rx="34" ry="22" fill="rgba(82,232,207,0.08)" stroke="var(--bio)" stroke-width="1.6" filter="url(#bioGlow)"/>
+              <circle cx="55" cy="50" r="4" fill="var(--ink)"/>
+              <path d="M60,74 C56,90 50,100 46,116 M70,76 C68,94 66,106 64,122 M80,75 C82,92 86,104 90,118 M90,72 C96,86 102,96 108,108"
+                stroke="var(--bio)" stroke-width="1.3" fill="none" opacity="0.85"/>
+              <path d="M36,52 C10,58 -6,70 -14,86" stroke="var(--bio)" stroke-width="1.1" fill="none" opacity="0.7" transform="translate(20,0)"/>
+              <path d="M36,58 C6,66 -10,80 -16,98" stroke="var(--bio)" stroke-width="1.1" fill="none" opacity="0.7" transform="translate(20,0)"/>
+            </svg>
+          </div>
+          <div class="creature-body">
+            <h3>Calamar gigante</h3>
+            <p>Habita justo en el límite inferior de esta zona. Pocas veces se le ha visto vivo en su hábitat: casi todo lo que se sabe de él proviene de restos varados o de estómagos de cachalotes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="zona-medianoche" class="zone" data-zone="Zona de medianoche" data-depth="2500">
+    <div class="zone-inner">
+      <p class="eyebrow">Zona 3 · Medianoche (batipelágica)</p>
+      <h2>Oscuridad total</h2>
+      <p class="zone-depth">1.000 – 4.000 m · 0% de luz solar, 4 °C constantes</p>
+      <p>No entra ni un fotón del sol. La única luz es la que los propios animales encienden y apagan. La comida escasea: lo que llega es la lluvia lenta de materia orgánica que cae desde arriba, la "nieve marina".</p>
+      <div class="creature-list">
+        <div class="creature">
+          <div class="creature-icon">
+            <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+              <path d="M40,50 C25,60 20,80 30,98 C42,118 78,122 100,110 C118,100 122,84 112,72 C124,68 132,58 130,48 C118,50 108,56 102,64 C88,50 60,42 40,50 Z"
+                fill="rgba(82,232,207,0.08)" stroke="var(--bio)" stroke-width="1.6" filter="url(#bioGlow)"/>
+              <path d="M60,64 L70,72 L58,72 L68,80" stroke="var(--ink)" stroke-width="1.2" fill="none" opacity="0.8"/>
+              <circle cx="52" cy="60" r="3.5" fill="var(--ink)"/>
+              <path d="M56,44 C50,28 46,14 48,4" stroke="var(--bio)" stroke-width="1.3" fill="none"/>
+              <circle cx="48" cy="4" r="4" fill="var(--lure)" filter="url(#lureGlow)"/>
+            </svg>
+          </div>
+          <div class="creature-body">
+            <h3>Pez abisal (rape)</h3>
+            <p>La hembra lleva una caña luminosa sobre la cabeza para atraer presas hacia una boca desproporcionada. El macho, minúsculo, se funde a su cuerpo de forma permanente y vive como un parásito reproductivo.</p>
+          </div>
+        </div>
+        <div class="creature">
+          <div class="creature-icon">
+            <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="80" cy="60" rx="30" ry="26" fill="rgba(82,232,207,0.08)" stroke="var(--bio)" stroke-width="1.6" filter="url(#bioGlow)"/>
+              <path d="M54,40 C34,26 14,30 4,44 M56,80 C34,92 12,88 2,74 M104,36 C126,20 148,24 158,38 M106,84 C128,98 150,92 160,78"
+                stroke="var(--bio)" stroke-width="1.2" fill="none" opacity="0.8"/>
+              <path d="M4,44 C14,54 34,50 44,42 M2,74 C14,66 34,68 44,76 M158,38 C148,50 126,46 116,40 M160,78 C148,68 128,70 118,78"
+                stroke="var(--bio)" stroke-width="0.9" fill="none" opacity="0.55"/>
+              <circle cx="66" cy="52" r="4.5" fill="var(--ink)"/>
+              <circle cx="94" cy="52" r="4.5" fill="var(--ink)"/>
+              <path d="M64,42 C60,26 62,14 68,6" stroke="var(--bio)" stroke-width="1" fill="none" opacity="0.6"/>
+            </svg>
+          </div>
+          <div class="creature-body">
+            <h3>Calamar vampiro</h3>
+            <p>Pese al nombre, no caza: envuelve su cuerpo en una capa aterciopelada y se alimenta de partículas en descomposición que caen desde arriba, con el metabolismo más lento conocido en cefalópodos.</p>
+          </div>
+        </div>
+        <div class="creature">
+          <div class="creature-icon">
+            <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10,60 C10,40 40,32 76,34 C74,44 74,54 78,62 C74,70 74,80 76,90 C40,92 10,84 10,60 Z"
+                fill="rgba(82,232,207,0.08)" stroke="var(--bio)" stroke-width="1.6" filter="url(#bioGlow)"/>
+              <path d="M78,62 C110,58 150,60 186,66" stroke="var(--bio)" stroke-width="1.4" fill="none"/>
+              <circle cx="184" cy="66" r="3" fill="var(--lure)" filter="url(#lureGlow)"/>
+              <circle cx="34" cy="52" r="3.5" fill="var(--ink)"/>
+            </svg>
+          </div>
+          <div class="creature-body">
+            <h3>Pez tragón</h3>
+            <p>Su estómago se expande varias veces el tamaño de su cuerpo, una apuesta necesaria cuando la próxima comida puede tardar meses en aparecer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="zona-abisal" class="zone" data-zone="Zona abisal" data-depth="5000">
+    <div class="zone-inner">
+      <p class="eyebrow">Zona 4 · Abisal</p>
+      <h2>El fondo, casi</h2>
+      <p class="zone-depth">4.000 – 6.000 m · cubre el 60% del fondo oceánico</p>
+      <p>La presión aquí supera las 400 atmósferas: el peso de un elefante sobre cada uña. Aun así, esta llanura fría y oscura es el tipo de hábitat más común del planeta, más extenso que todos los bosques y desiertos juntos.</p>
+      <div class="creature-list">
+        <div class="creature">
+          <div class="creature-icon">
+            <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="95" cy="60" rx="36" ry="24" fill="rgba(82,232,207,0.08)" stroke="var(--bio)" stroke-width="1.6" filter="url(#bioGlow)"/>
+              <ellipse cx="52" cy="42" rx="16" ry="10" fill="none" stroke="var(--bio)" stroke-width="1.3" filter="url(#bioGlow)" transform="rotate(-25 52 42)"/>
+              <ellipse cx="52" cy="78" rx="16" ry="10" fill="none" stroke="var(--bio)" stroke-width="1.3" filter="url(#bioGlow)" transform="rotate(25 52 78)"/>
+              <path d="M120,72 C126,86 122,98 116,108 M132,68 C142,80 142,94 134,106 M110,76 C112,92 106,104 98,112"
+                stroke="var(--bio)" stroke-width="1.1" fill="none" opacity="0.75"/>
+              <circle cx="78" cy="54" r="4" fill="var(--ink)"/>
+              <circle cx="98" cy="52" r="4" fill="var(--ink)"/>
+            </svg>
+          </div>
+          <div class="creature-body">
+            <h3>Pulpo dumbo</h3>
+            <p>Nada agitando dos aletas junto a la cabeza, como orejas. Es el pulpo que vive a mayor profundidad conocida, y no expulsa tinta: a esta profundidad, en total oscuridad, sería inútil.</p>
+          </div>
+        </div>
+        <div class="creature">
+          <div class="creature-icon">
+            <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="100" cy="66" rx="72" ry="30" fill="rgba(82,232,207,0.08)" stroke="var(--bio)" stroke-width="1.6" filter="url(#bioGlow)"/>
+              <path d="M50,40 C50,60 50,72 50,92 M68,36 C68,58 68,74 68,96 M86,34 C86,58 86,74 86,98 M104,34 C104,58 104,74 104,98 M122,36 C122,58 122,74 122,96 M140,40 C140,60 140,72 140,92"
+                stroke="var(--bio)" stroke-width="1" fill="none" opacity="0.55"/>
+              <path d="M40,66 L14,58 M40,72 L14,80 M160,66 L186,58 M160,72 L186,80"
+                stroke="var(--bio)" stroke-width="1" fill="none" opacity="0.6"/>
+              <circle cx="150" cy="58" r="2.4" fill="var(--ink)"/>
+            </svg>
+          </div>
+          <div class="creature-body">
+            <h3>Isópodo gigante</h3>
+            <p>Pariente lejano de la cochinilla de jardín, pero del tamaño de un balón, gracias al gigantismo abisal: el frío y la presión favorecen cuerpos más grandes y metabolismos más lentos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="zona-hadal" class="zone" data-zone="Zona hadal" data-depth="9000">
+    <div class="zone-inner">
+      <p class="eyebrow">Zona 5 · Hadal</p>
+      <h2>Las fosas</h2>
+      <p class="zone-depth">6.000 – 11.000 m · nombrada por Hades</p>
+      <p>Solo existe en fosas oceánicas, grietas donde una placa tectónica se hunde bajo otra. Menos de treinta personas han llegado hasta su punto más profundo, la Fosa de las Marianas: más gente ha pisado la Luna.</p>
+      <div class="creature-list">
+        <div class="creature">
+          <div class="creature-icon">
+            <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14,70 C14,54 34,44 60,44 C96,44 130,52 156,64 C168,68 178,70 184,70 C178,72 168,74 156,78 C130,90 96,98 60,98 C34,98 14,88 14,70 Z"
+                fill="rgba(82,232,207,0.07)" stroke="var(--bio)" stroke-width="1.5" filter="url(#bioGlow)" opacity="0.9"/>
+              <circle cx="46" cy="66" r="3.5" fill="var(--ink)"/>
+              <path d="M60,44 C56,36 56,28 60,22 M76,46 C74,38 76,30 80,26" stroke="var(--bio)" stroke-width="1" fill="none" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="creature-body">
+            <h3>Caracol abisal (snailfish)</h3>
+            <p>El pez más profundo jamás filmado con vida, a más de 8.000 metros. Su cuerpo gelatinoso y su esqueleto incompleto ceden ante la presión en vez de resistirla, la misma razón por la que puede existir ahí.</p>
+          </div>
+        </div>
+        <div class="creature">
+          <div class="creature-icon">
+            <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+              <g fill="rgba(82,232,207,0.1)" stroke="var(--bio)" stroke-width="1.2" filter="url(#bioGlow)">
+                <ellipse cx="46" cy="50" rx="16" ry="7"/>
+                <ellipse cx="94" cy="66" rx="16" ry="7"/>
+                <ellipse cx="66" cy="90" rx="16" ry="7"/>
+                <ellipse cx="130" cy="42" rx="16" ry="7"/>
+                <ellipse cx="150" cy="82" rx="16" ry="7"/>
+              </g>
+              <g stroke="var(--bio)" stroke-width="0.8" opacity="0.6">
+                <line x1="38" y1="46" x2="34" y2="38"/><line x1="54" y1="46" x2="58" y2="38"/>
+                <line x1="86" y1="62" x2="82" y2="54"/><line x1="102" y1="62" x2="106" y2="54"/>
+              </g>
+            </svg>
+          </div>
+          <div class="creature-body">
+            <h3>Anfípodos</h3>
+            <p>Diminutos crustáceos carroñeros que se congregan por miles ante cualquier resto orgánico. Estudios de sus tejidos han encontrado rastros de contaminantes fabricados por el ser humano, incluso a once kilómetros de la superficie.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="hadal-floor">
+    <p class="eyebrow">Fin del descenso</p>
+    <h2>Once mil metros después, la vida no se acaba: cambia de reglas.</h2>
+    <p>Hemos cartografiado con más detalle la superficie de Marte que el fondo de nuestro propio océano. Lo que acabas de recorrer en unos minutos de scroll, para un submarino tripulado toma horas de descenso real, en total silencio, sin luz.</p>
+    <p class="final-depth">10.935 m — Fosa de las Marianas, el punto más profundo conocido</p>
+  </section>
+
+</main>
+
+<footer>PÁGINA INFORMATIVA · OCÉANO PROFUNDO</footer>
+
+<script>
+(function(){
+  // ---------- Partículas bioluminiscentes ----------
+  var particleField = document.getElementById('particles');
+  var PARTICLE_COUNT = window.innerWidth < 720 ? 26 : 46;
+  for (var i = 0; i < PARTICLE_COUNT; i++){
+    var p = document.createElement('div');
+    p.className = 'particle';
+    var size = (Math.random() * 2.2 + 1).toFixed(1);
+    p.style.width = size + 'px';
+    p.style.height = size + 'px';
+    p.style.left = (Math.random() * 100) + 'vw';
+    p.style.top = (Math.random() * 100) + 'vh';
+    p.style.animationDuration = (Math.random() * 14 + 10) + 's, ' + (Math.random() * 3 + 2.5) + 's';
+    p.style.animationDelay = '-' + (Math.random() * 10) + 's, -' + (Math.random() * 3) + 's';
+    particleField.appendChild(p);
+  }
+
+  // ---------- Medidor de profundidad ----------
+  var zones = Array.prototype.slice.call(document.querySelectorAll('.zone'));
+  var marker = document.getElementById('gauge-marker');
+  var track = document.getElementById('gauge-track');
+  var depthVal = document.getElementById('depth-val');
+  var zoneName = document.getElementById('zone-name');
+  var trackHeight = 0;
+
+  function updateTrackHeight(){ trackHeight = track.getBoundingClientRect().height; }
+  updateTrackHeight();
+  window.addEventListener('resize', updateTrackHeight);
+
+  function currentDepthAndZone(){
+    var scrollY = window.scrollY;
+    var docHeight = document.body.scrollHeight - window.innerHeight;
+    var progress = docHeight > 0 ? scrollY / docHeight : 0;
+    progress = Math.max(0, Math.min(1, progress));
+    var active = zones[0];
+    for (var i = 0; i < zones.length; i++){
+      var rect = zones[i].getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.55) active = zones[i];
+    }
+    return { progress: progress, zone: active };
+  }
+
+  function formatDepth(m){ return m.toLocaleString('es-ES') + ' m'; }
+
+  function onScroll(){
+    var state = currentDepthAndZone();
+    marker.style.top = (state.progress * trackHeight) + 'px';
+    zoneName.textContent = state.zone.dataset.zone.toUpperCase();
+    depthVal.textContent = formatDepth(parseInt(state.zone.dataset.depth, 10));
+    var glowOpacity = 0.12 + state.progress * 0.75;
+    particleField.style.opacity = glowOpacity.toFixed(2);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  // ---------- Revelado progresivo al entrar en pantalla ----------
+  var revealTargets = [];
+  document.querySelectorAll('.zone-inner').forEach(function(inner){
+    var children = inner.querySelectorAll(':scope > .eyebrow, :scope > h2, :scope > .zone-depth, :scope > p');
+    children.forEach(function(child, idx){
+      child.classList.add('reveal');
+      child.style.setProperty('--reveal-delay', (idx * 0.08) + 's');
+      revealTargets.push(child);
+    });
+  });
+  document.querySelectorAll('.creature').forEach(function(card, idx){
+    card.classList.add('reveal');
+    card.style.setProperty('--reveal-delay', ((idx % 3) * 0.12) + 's');
+    revealTargets.push(card);
+  });
+  document.querySelectorAll('#hadal-floor > *').forEach(function(child, idx){
+    child.classList.add('reveal');
+    child.style.setProperty('--reveal-delay', (idx * 0.1) + 's');
+    revealTargets.push(child);
+  });
+
+  if ('IntersectionObserver' in window){
+    var revealObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    revealTargets.forEach(function(el){ revealObserver.observe(el); });
+  } else {
+    revealTargets.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  // ---------- Notas de texto libres ----------
+  var toggleBtn = document.getElementById('notes-toggle');
+  var hint = document.getElementById('notes-hint');
+  var notesActive = false;
+  var noteCounter = 0;
+
+  function setNotesActive(state){
+    notesActive = state;
+    document.body.classList.toggle('notes-mode', notesActive);
+    toggleBtn.classList.toggle('active', notesActive);
+    toggleBtn.setAttribute('aria-pressed', String(notesActive));
+    hint.classList.toggle('show', notesActive);
+  }
+
+  toggleBtn.addEventListener('click', function(){ setNotesActive(!notesActive); });
+
+  function createNote(x, y){
+    noteCounter++;
+    var note = document.createElement('div');
+    note.className = 'sticky-note';
+    note.style.left = Math.max(8, x) + 'px';
+    note.style.top = Math.max(8, y) + 'px';
+
+    var head = document.createElement('div');
+    head.className = 'note-head';
+
+    var tag = document.createElement('span');
+    tag.className = 'note-tag';
+    tag.textContent = 'Nota ' + noteCounter;
+
+    var close = document.createElement('button');
+    close.className = 'note-close';
+    close.type = 'button';
+    close.setAttribute('aria-label', 'Eliminar nota');
+    close.textContent = '×';
+    close.addEventListener('click', function(){ note.remove(); });
+
+    head.appendChild(tag);
+    head.appendChild(close);
+
+    var text = document.createElement('div');
+    text.className = 'note-text';
+    text.contentEditable = 'true';
+    text.setAttribute('data-placeholder', 'Escribe aquí…');
+
+    note.appendChild(head);
+    note.appendChild(text);
+    document.body.appendChild(note);
+
+    // Arrastrar desde la cabecera
+    var dragging = false, offX = 0, offY = 0;
+    head.addEventListener('mousedown', function(e){
+      dragging = true;
+      offX = e.clientX - note.offsetLeft;
+      offY = e.clientY - note.offsetTop + window.scrollY;
+      e.preventDefault();
+    });
+    document.addEventListener('mousemove', function(e){
+      if (!dragging) return;
+      note.style.left = (e.clientX - offX) + 'px';
+      note.style.top = (e.clientY - offY + window.scrollY) + 'px';
+    });
+    document.addEventListener('mouseup', function(){ dragging = false; });
+
+    setTimeout(function(){ text.focus(); }, 20);
+  }
+
+  document.addEventListener('click', function(e){
+    if (!notesActive) return;
+    if (e.target.closest('#notes-toggle') || e.target.closest('.sticky-note') || e.target.closest('#gauge')) return;
+    var x = e.pageX;
+    var y = e.pageY;
+    createNote(x, y);
+  });
+})();
+</script>
+
+</body>
+</html>

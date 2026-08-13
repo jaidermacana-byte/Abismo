@@ -230,7 +230,7 @@
     content:''; width:1px; height:34px; background:linear-gradient(var(--bio), transparent);
     animation:pulse-line 2s ease-in-out infinite;
   }
-  @keyframes pulse-line{ 0%,100%{opacity:0.4;} 50%{opacity:1;} }
+  
 
   /* ---------- Cierre ---------- */
   #hadal-floor{
